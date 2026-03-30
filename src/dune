@@ -1,8 +1,7 @@
 (library
  (foreign_stubs
   (language c)
-  (names time_now_stubs)
-  (flags -std=c11 -fPIC))
+  (names time_now_stubs))
  (name time_now)
  (public_name time_now)
  (libraries base jane-street-headers)

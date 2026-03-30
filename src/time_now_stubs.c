@@ -1,6 +1,13 @@
 #include "config.h"
+/* On MSVC, jane_common.h (included by ocaml_utils.h) redefines 'inline'
+   to empty. This strips the inline qualifier from the _Atomic_* helper
+   functions in MSVC's <stdatomic.h>, turning them into regular external
+   functions and causing LNK2005 duplicate symbol errors when linking
+   against libasmrun.lib. Prevent this by skipping jane_common.h. */
+#ifdef _MSC_VER
+#define JANE_COMMON_H
+#endif
 #include "ocaml_utils.h"
-#include <caml/memory.h>
 #include <time.h>
 
 #define NANOS_PER_SECOND 1000000000
